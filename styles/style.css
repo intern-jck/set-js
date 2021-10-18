@@ -1,38 +1,38 @@
 html {
     font-family:monospace;
-    background-color:grey;
+    background-color:rgb(182, 181, 181);
 }
 
 
 body {
-    width: 800px;
-    height:800px;
-    display:block;
+    width: 1200px;
+    height: 800px;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows:100px 4fr;
     margin:40px auto;
-    background-color:rgb(0, 9, 128);
+    background-color:#00ccff;
     padding:20px 20px;
     border: 4px solid black;
 }
 
+#header-section{
+    display:flex;
+    justify-content:center;
+    width:200px;
+    margin:10px auto;
+    background-color:green;
+}
 
 h1 {
-    display:block;
+    width:200px;
     text-align:center;
-    margin:10 40;
-    background-color:red;
+    margin:0px 10px;
+    /*background-color:#335599;*/
 }
 
-.test-box{
-    background:red;
-    width:50px;
-    height:50px;
-}
-
-#card-grid {
-    display:grid;
-    grid-template-columns:repeat(4, 120px);
-    grid-template-rows:repeat(3, 140px);
-    grid-gap:10px;
+#game-rules{
+    background-color:blueviolet;
 }
 
 .card-image {
@@ -41,11 +41,100 @@ h1 {
     background-color:grey;
     border:4px solid red;
 }
-
 .card-clicked {
     border:4px solid green;
 }
 
 .card-unclicked {
     border:4px solid black;
+}
+
+
+#card-grid {
+    grid-column:1;
+    grid-row:2;
+    background:grey;
+    width:600px;
+    height:440px;
+    padding:20px 20px;
+    display:grid;
+    grid-template-columns:repeat(5, 120px);
+    grid-template-rows:repeat(3, 140px);
+    grid-gap:10px;
+}
+
+
+.test-box{
+    text-align:center;
+    background:red;
+    width:50px;
+    height:50px;
+}
+
+/* Cells in the grid*/
+.cell-1{
+    grid-column:1;
+    grid-row:1;
+}
+.cell-2{
+    grid-column:1;
+    grid-row:2;
+}
+.cell-3{
+    grid-column:1;
+    grid-row:3;
+}
+
+.cell-4{
+    grid-column:2;
+    grid-row:1;
+}
+.cell-5{
+    grid-column:2;
+    grid-row:2;
+}
+.cell-6{
+    grid-column:2;
+    grid-row:3;
+}
+
+.cell-7{
+    grid-column:3;
+    grid-row:1;
+}
+
+.cell-8{
+    grid-column:3;
+    grid-row:2;
+}
+.cell-9{
+    grid-column:3;
+    grid-row:3;
+}
+
+.cell-10{
+    grid-column:4;
+    grid-row:1;
+}
+.cell-11{
+    grid-column:4;
+    grid-row:2;
+}
+.cell-12{
+    grid-column:4;
+    grid-row:3;
+}
+
+/* Extra Cards*/
+.cell-13{
+    grid-column:5;
+    grid-row:1;
+}
+.cell-14{
+    grid-column:5;
+    grid-row:2;
+}
+.cell-15{
+    grid-column:5;
+    grid-row:3;
 }

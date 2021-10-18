@@ -12,12 +12,16 @@
 
 <body>
 
-    <section class="header-section">
+    <section id="header-section">
 
         <div id="header-title">
             <h1> The Game of Set! </h1>
         </div>
 
+
+    </section>
+
+    <section id="rules-section">
         <div id="game-rules">
             <ul>Rules
                 <ol>
@@ -28,19 +32,30 @@
             </ul>
         </div>
 
+        <div id="examples">
+            <!--Examples of sets go here-->
+        </div>
+
     </section>
 
-    <section class="card-table">
+    <section id="card-table">
         <div id="game-buttons">
             <ul>
                 <button onclick="newGame();">New Game</button>
-                <button onclick="drawThree();">Draw 3</button>
+                <button onclick="clearTable();">Clear Table</button>
+                <!--                    
                 <button onclick="checkSet();">Check Set</button>
                 <button onclick="showImage();">Show Card</button>
                 <button onclick="buttonTest();">Hint</button>
+                -->
             </ul>
         </div>
         <div id="card-grid">
+            <!--
+            <div class="test-box cell-4">Test Box</div>
+            -->
+
+
             <!-- Card images will go here-->
         </div>
     </section>
