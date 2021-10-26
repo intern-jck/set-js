@@ -26,6 +26,54 @@ function getImages() {
 
 getImages();
 
+function ternary(n) {
+    if (n === 0) {
+        return [0, 0, 0, 0];
+    }
+
+
+}
+
+
+/*  Function to create a ternary value based on input
+    def ternary(self, n):
+        if n == 0:
+            return [0, 0, 0, 0]
+        num = []
+        while n:
+            n, r = divmod(n, 3)
+            num.append(r)
+        num = num[::-1]
+        if len(num) == 1:
+            num.insert(0, 0)
+            num.insert(0, 0)
+            num.insert(0, 0)
+            return num
+        elif len(num) == 2:
+            num.insert(0, 0)
+            num.insert(0, 0)
+            return num
+        elif len(num) == 3:
+            num.insert(0, 0)
+            return num
+        elif len(num) == 4:
+            return num
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 function newGame() {
 
     if (cardDeck.length == 0) {
@@ -47,7 +95,7 @@ function newGame() {
             cardImages[cardDrawn].classList.add("card-image", "card-unclicked");
             cardImages[cardDrawn].classList.add("cell-" + i);
 
-            document.getElementById("card-grid").appendChild(cardImages[cardDrawn]);
+            document.getElementById("card-section").appendChild(cardImages[cardDrawn]);
             //Remove this card from the deck
             cardDeck.shift();
         }
@@ -92,13 +140,10 @@ function cardClicked(cardId) {
     //console.log(cardId);
     //console.log(document.getElementById(cardId).attributes);
 
-
     var splitArray = cardId.split("-");
     var cardNum = splitArray[1];
     isClicked[cardNum] = !isClicked[cardNum];
     //console.log(cardNum, isClicked[cardNum]);
-
-
 
     clickVal = isClicked[cardNum];
 
