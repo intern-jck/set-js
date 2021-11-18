@@ -6,24 +6,8 @@ var cardDeck = [];
 var cardSet = [];
 var points = 0;
 
-//Array to store card grid positions
-//var cardTable = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
-
+//Array to store cards currently in play
 var cardsOnTable = [];
-
-//Each card can be represented by a 4 digit ternary number.  The zeros, ones and twos
-//  represent 1 of the 3 types of the 4 attributes each card has.  
-
-//  [Color, Texture, Number, Shape] == [#,#,#,#]
-//  # = 0 || 1 || 2
-//  [Red, Empty, One, Triangle] == [0, 0, 0, 0]
-//  [Green, Filled, Two, Square] == [1, 2, 1, 1]
-
-//Roughly shuffles the deck.  Can be improved.
-function shuffleDeck(array) {
-    array.sort(() => Math.random() - 0.5);
-    return array;
-}
 
 function newGame() {
 
@@ -32,6 +16,9 @@ function newGame() {
 
         getImages();
         updateScoreboard(0);
+        points = 0;
+        cardSet = [];
+
         // Each card has a number and a value
         // Number is used for indexing and value is a ternary number respresenting its attributes
         for (let i = 0; i < deckSize; i++) {
@@ -41,6 +28,7 @@ function newGame() {
         }
 
         //cardDeck = shuffleDeck(cardDeck);
+
         // Place a card in the first 12 slots of the card table
         for (let i = 0; i < 12; i++) {
             drawCard();
@@ -56,13 +44,19 @@ function newGame() {
 function clearTable() {
     //Reset points
     updateScoreboard(0);
+    points = 0;
 
     //Get all the cards and remove all the cards img from the table
     let cardSection = document.getElementById("card-section");
 
     while (cardSection.firstChild) {
-        cardSection.lastChild.classList = [];
+        //cardSection.lastChild.classList = [];
         cardSection.removeChild(cardSection.lastChild);
+    }
+
+    for (let img in cardImages) {
+        cardImages[img].classList = [];
+        isClicked[img] = false;
     }
 
     //Clear the deck
@@ -81,12 +75,20 @@ function getCardClasses(cardId) {
 
 //Removes a card from the table
 function clearCard(cardId) {
+
+    //console.log(cardId, cardsOnTable.indexOf(cardId));
+    cardsOnTable.slice(cardsOnTable.indexOf(cardId), 1);
     let cardClasses = getCardClasses(cardId);
     let regex = /cell/;
+    let cardNum = cardId.split("-")[1];
+
     if (regex.test(cardClasses)) {
         let card = document.getElementById(cardId);
+        card.classList.remove(getCellLocation(cardId));
         card.parentNode.removeChild(card);
+        isClicked[cardNum] = false;
     }
+    console.log(cardsOnTable);
 }
 //Add three more cards to the table
 function drawThree() {
@@ -96,7 +98,9 @@ function drawThree() {
         cardImages[cardDrawn].classList.add("cell-" + (12 + i));
         document.getElementById("card-section").appendChild(cardImages[cardDrawn]);
         cardDeck.shift();
+        cardsOnTable.push("card-" + cardDrawn)
     }
+    console.log(cardsOnTable);
 
 }
 
@@ -105,16 +109,18 @@ function drawThree() {
 function drawCard() {
     //Draw a card from the top of the deck
     let cardDrawn = cardDeck[0];
-    console.log(cardsOnTable.length);
+    //console.log(cardsOnTable.length);
 
-    if (cardsOnTable.length <= 12) {
-        cardImages[cardDrawn].classList.add("cell-" + cardsOnTable.length % 12);
-        console.log("cell-" + cardsOnTable.length % 12);
+    if (cardsOnTable.length < 12) {
+        cardImages[cardDrawn].classList.add("cell-" + cardsOnTable.length);
+        //console.log("cell-" + cardsOnTable.length % 12);
         document.getElementById("card-section").appendChild(cardImages[cardDrawn]);
 
         cardsOnTable.push("card-" + cardDrawn)
         cardDeck.shift();
     }
+
+    console.log(cardsOnTable);
 }
 
 
@@ -164,6 +170,7 @@ function checkSet() {
 
     //Get the current set
     let set = cardSet.slice();
+    console.log("Checking:", set);
 
     //Only check if there are 3 cards in set
     if (set.length === 3) {
@@ -187,56 +194,37 @@ function checkSet() {
 
             sortCards();
 
-            // drawCard();
-            // drawCard();
-            // drawCard();
+            drawCard();
+            drawCard();
+            drawCard();
 
             // //Clear the card set
-            // cardSet.shift();
-            // cardSet.shift();
-            // cardSet.shift();
+            cardSet.shift();
+            cardSet.shift();
+            cardSet.shift();
             // // Tally points
-            // points += 3;
-            // updateScoreboard(points);
+            points += 3;
+            updateScoreboard(points);
             return true;
         } else {
             console.log("Not A Set!");
+            alert("Not A Set!");
             return false;
         }
-    } else if (possibleSet.length < 3 || possibleSet.length == 0) {
-        console.log("Nedd more cards!");
+    } else if (set.length < 3 || set.length == 0) {
+        console.log("Need more cards!");
+        alert("Need more cards!");
         return false;
     }
 }
 
-function updateScoreboard(score) {
-    pointsElement = document.getElementById("points");
-    pointsElement.innerHTML = score;
-}
 
-//Used to test card sets
-function allEqual(arr) {
-    let equalArr = arr.slice();
-    if (equalArr[0] === equalArr[1] && equalArr[1] === equalArr[2]) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function allDifferent(arr) {
-    let differentArr = arr.slice();
-    if (differentArr[0] != differentArr[1] &&
-        differentArr[1] != differentArr[2] &&
-        differentArr[2] != differentArr[0]) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 //Actions to take when a card is clicked.
 function cardClicked(cardId) {
+
+    let cardClassList = document.getElementById(cardId).classList;
+
 
     //Parse the id to get a card number
     let splitArray = cardId.split("-");
@@ -254,35 +242,39 @@ function cardClicked(cardId) {
             //If there are less than 3 cards in the current set
             if (cardSet.length < 3) {
 
-                let cardClassList = document.getElementById(cardId).classList;
                 if (cardClassList.contains("card-hint")) {
-                    cardClassList.remove("card-hint")
+                    cardClassList.remove("card-hint");
                 }
 
                 if (cardClassList.contains("card-unclicked")) {
-                    cardClassList.remove("card-unclicked")
+                    cardClassList.remove("card-unclicked");
                 }
 
-                cardClassList.add("card-clicked");
+                if (cardClassList.contains("card-clicked") === false) {
+                    cardClassList.add("card-clicked");
+                }
 
                 cardSet.push(cardNum);
-                console.log("SET: ", cardSet);
+                //console.log("SET: ", cardSet);
+                console.log(cardNum, cardClassList);
             }
             break;
 
         case false:
 
-            let cardClassList = document.getElementById(cardId).classList;
+            //     let cardClassList = document.getElementById(cardId).classList;
 
             if (cardClassList.contains("card-hint")) {
-                cardClassList.remove("card-hint")
+                cardClassList.remove("card-hint");
             }
 
             if (cardClassList.contains("card-clicked")) {
-                cardClassList.remove("card-clicked")
+                cardClassList.remove("card-clicked");
             }
 
-            cardClassList.add("card-unclicked");
+            if (cardClassList.contains("card-unclicked") === false) {
+                cardClassList.add("card-unclicked");
+            }
 
             if (cardSet.includes(cardNum) == true) {
                 //Find it in the card set
@@ -290,6 +282,8 @@ function cardClicked(cardId) {
                 //Remove it from the set
                 cardSet.splice(cardNumIndex, 1);
             }
+
+            console.log(cardNum, cardClassList);
             break;
 
     }
@@ -379,7 +373,31 @@ function quickCheck(set1, set2, set3) {
 }
 
 
+function updateScoreboard(score) {
+    pointsElement = document.getElementById("points");
+    pointsElement.innerHTML = score;
+}
 
+//Used to test card sets
+function allEqual(arr) {
+    let equalArr = arr.slice();
+    if (equalArr[0] === equalArr[1] && equalArr[1] === equalArr[2]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function allDifferent(arr) {
+    let differentArr = arr.slice();
+    if (differentArr[0] != differentArr[1] &&
+        differentArr[1] != differentArr[2] &&
+        differentArr[2] != differentArr[0]) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
@@ -489,4 +507,13 @@ function getAllSets() {
         setTotal += matchesObj[k].length;
     }
     console.log("Total Sets:", setTotal);
+}
+
+
+
+
+//Roughly shuffles the deck.  Can be improved.
+function shuffleDeck(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
 }
