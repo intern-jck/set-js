@@ -5,11 +5,11 @@ html {
 
 
 body {
-    width: 1200px;
-    height: 600px;
+    width: 1366px;
+    height: 768px;
     display: grid;
-    grid-template-rows:100px 1fr;
-    grid-template-columns:1fr 1fr;
+    /* grid-template-rows:100px 1fr; */
+    grid-template-columns: 1fr 1fr;
     grid-gap:10px;
     padding:10px 10px;
     margin-top:20px;
@@ -20,46 +20,155 @@ body {
     border: 4px solid black;
 }
 
+/*---Core Elements---*/
+h1 {
+    text-align:center;
+    font-size: 200%;
+}
+
+h2 {
+    text-align:center;
+    font-size: 150%;
+}
+
+h4 {
+    text-align:center;
+    font-size:125%;
+    margin:2px;
+}
 
 /*---Sections---*/
-#header-section{
-    grid-row:1;
+
+/* Set Info Section */
+#match-intro{
     grid-column:1;
     background-color:green;
     width:auto;
     height:auto;
     border:2px solid black;
     padding:10px 10px;
-}
-
-#rule-section{
-    grid-row:2;
-    grid-column:1;
-    background:rgb(43, 116, 226);
-    width:auto;
-    height:auto;
-    border:2px solid black;
-    padding:10px 10px;
-}
-
-#control-section{    
-    grid-row:1;
-    grid-column:2;
-    background-color:orange;
-    width:auto;
-    height:auto;
-    border:2px solid black;
-    padding:10px 10px;
-
+    
     display:grid;
-    grid-template-rows:1fr 1fr;
-    grid-template-columns:1fr 1fr;
+    grid-template-rows:100px 1fr;
     grid-gap:10px;
 }
 
-#card-section {
+#game-title{
+    grid-row:1;    
+    width:auto;
+    height:auto;
+    justify-items:center;
+    align-items:center;
+    background-color:orange;
+    border:2px solid black;
+    padding:2px 2px;
+    display:grid;
+    grid-template-rows:40px 20px 1fr;
+}
+
+#game-rules{
+    grid-row:2;
+    width:auto;
+    height:auto;
+    justify-items:center;
+    align-items:center;
+    border:2px solid black;
+    padding:10px 10px;
+
+    display:inline-grid;
+    grid-template-rows:100px 2fr 2fr;
+    grid-template-columns:repeat(2, 1fr);
+}
+
+#rules-header{
+    grid-row:1;
+    grid-column:1/3;
+    /* border:2px solid black; */
+    padding:4px 4px;
+}
+
+#card-set-1{
+    grid-row:2;
+    grid-column:1;
+    border:2px solid black;
+    padding:4px 4px;
+    background:orange;
+}
+
+#card-set-2{
+    grid-row:3;
+    grid-column:1;
+    border:2px solid black;
+    padding:4px 4px;
+    background:orange;
+}
+
+#card-set-3{
     grid-row:2;
     grid-column:2;
+    border:2px solid black;
+    padding:4px 4px;
+    background:orange;
+}
+#card-set-4{
+    grid-row:3;
+    grid-column:2;
+    border:2px solid black;
+    padding:4px 4px;
+    background:orange;
+}
+
+
+
+/* Set Game Section */
+
+#match-game{
+    grid-column:2;
+    background:blue;
+    width:auto;
+    height:auto;
+    border:2px solid rgb(0, 0, 0);
+    padding:10px 10px;
+
+    display:grid;
+    grid-template-rows:100px 2fr 160px;
+    grid-gap:10px;
+}
+
+#game-control{ 
+    grid-row:1;
+    padding:4px 4px;
+    border:4px solid black;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    justify-items:center;
+    align-items:center;
+}
+#main-buttons{
+    padding:2px 2px;
+    grid-column:1;
+    /* border:8px solid magenta; */
+}
+
+#gameplay-buttons{
+    padding:2px 2px;
+    grid-column:2;
+    /* border:8px solid magenta; */
+}
+
+#scoreboard{
+    grid-column:3;
+    width:80px;
+    height:60px;
+    padding:10px 10px;
+    color:yellow;
+    border:4px solid magenta;
+}
+
+
+#card-table {
+    grid-row:2;
     background:grey;
     width:auto;
     height:auto;
@@ -72,47 +181,8 @@ body {
     grid-gap:10px;
 }
 
-/*---Elements---*/
-h1 {
-    text-align:center;
-    font-size: 200%;
-}
 
-h2 {
-    text-align:center;
-    font-size: 150%;
-}
 
-#game-buttons{ 
-    grid-row:1/3;
-    grid-column:1;
-    padding:10px 10px;
-    border:2px solid black;
-    overflow:hidden;
-    
-    justify-items:center;
-    display:grid;
-    grid-template-rows:repeat(2, 1fr);
-    grid-template-columns:repeat(3, 1fr);
-}
-
-#main-buttons{
-    padding:2px 2px;
-    grid-row:1;
-    grid-column:1/4;
-}
-#gameplay-buttons{
-    padding:2px 2px;
-    grid-row:2;
-    grid-column:1/4;
-}
-#scoreboard{
-    grid-row:1/3;
-    grid-column:2;
-    padding:10px 10px;
-    border:2px solid black;
-    overflow:hidden;
-}
 
 /*---Card Actions---*/
 .card-image {
@@ -130,7 +200,7 @@ h2 {
 }
 
 .card-hint {
-    border:4px solid purple;
+    border:4px solid red;
 }
 
 /* Cells in the grid*/
