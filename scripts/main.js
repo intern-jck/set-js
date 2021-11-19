@@ -85,7 +85,7 @@ var points = 0;
 
 // Alert window to tell players this game is very much a work in progress
 
-alert("This is my first game so there may be bugs. \nIf the game stops working, try to refresh your browser!");
+//alert("This is my first game so there may be bugs. \nIf the game stops working, try to refresh your browser!");
 
 
 
@@ -95,51 +95,63 @@ getImages();
 
 function newGame() {
 
-    //Check to see if a deck has been created    
-    if (cardDeck.length == 0) {
-        updateScoreboard(0);
-        points = 0;
-        match = [];
-        // Store card values and numbers
-        for (let i = 0; i < deckSize; i++) {
-            cardValues.push(ternary(i));
-            cardDeck.push(i);
-            isClicked[i] = false;
-        }
-        //Comment out this line for easy mode
-        cardDeck = shuffleDeck(cardDeck);
+    // Reset stuff
+    updateScoreboard(0);
+    points = 0;
+    match = [];
+    cardDeck = [];
 
-        // Place a card in the first 12 slots of the card table
-        for (let i = 0; i < 12; i++) {
-            drawCard("cell-" + i);
+    // If there are any cards already on the table, clear the whole table
+    for (let card in cardsOnTable) {
+        if (cardsOnTable[card]) {
+            clearTable();
         }
-    } else {
-        clearTable();
-        newGame();
     }
+
+    // Store card values and numbers
+    for (let i = 0; i < deckSize; i++) {
+        cardValues.push(ternary(i));
+        cardDeck.push(i);
+        isClicked[i] = false;
+    }
+
+    //Comment out this line for easy mode
+    cardDeck = shuffleDeck(cardDeck);
+
+    // Place a card in the first 12 slots of the card table
+    for (let i = 0; i < 12; i++) {
+        drawCard("cell-" + i);
+    }
+
+    console.log("NEW GAME:", cardsOnTable);
+
 }
 
 // Remove all the cards from the table.
 function clearTable() {
-    // Reset points
-    updateScoreboard(0);
-    points = 0;
 
-    // Clear the deck
-    cardDeck = [];
+    console.log("CLEARING TABLE:", cardsOnTable);
 
-    // Clear each card on the table
+    // Get each card on the table
+    let currentCards = [];
     for (let card in cardsOnTable) {
         if (cardsOnTable[card] != null) {
-            clearCard("cell-" + card);
+            currentCards.push(card);
         }
     }
+
+    // Clear each card on the table
+    for (let card in currentCards) {
+        clearCard("cell-" + card);
+    }
+
+    console.log("CLEARED END:", cardsOnTable);
 
 }
 
 // Places card at cell location
 function drawCard(cell) {
-    console.log(cell);
+
     // If there are no more cards to draw, exit
     if (cardDeck.length == 0) {
         return false;
@@ -147,6 +159,7 @@ function drawCard(cell) {
 
     // Else, draw a card from the top of the deck
     let cardDrawn = cardImages[cardDeck[0]];
+
     // Add the cell to it's class
     cardDrawn.classList.add(cell);
     // As well as the other classes
@@ -160,8 +173,10 @@ function drawCard(cell) {
     let cellNum = cellArr[1];
     //Add the card number to the table array
     cardsOnTable[cellNum] = cardDeck[0];
+    //console.log("adding:", cardDeck[0], " to:", cellNum);
     //Remove the drawn card from the deck
     cardDeck.shift();
+
 }
 
 //Add three more cards to the end table
@@ -172,40 +187,55 @@ function drawThree() {
 }
 
 //Removes a single card from the table
-function clearCard(cellNum) {
+function clearCard(cell) {
 
     // Get the card number at the cell position
-    let pos = cellNum.split("-")[1];
-    let cardNum = cardsOnTable[pos];
+    let cellNum = cell.split("-")[1];
+    let cardNum = cardsOnTable[cellNum];
+    console.log("CLEARING CARD:", cardNum, "from:", cell);
+    // Change cardsOnTable value to null
+    cardsOnTable[cellNum] = null;
+
     // Use this number to get th card id
     let card = document.getElementById("card-" + cardNum);
     // Clear the classes for that card
     card.classList = [];
     // Remove it from the page
     card.parentNode.removeChild(card);
-    // Change cardsOnTable value to null
-    cardsOnTable[pos] = null;
 }
 
 
 //Rearanges cards to keep the layout neat
 function sortCards() {
 
-    // Get the cards currenlty on table
-    let currentCards = [];
 
+    console.log("SORT CARDS:", cardsOnTable);
+
+    // Get the cards currently on the table
+    let currentCards = [];
     for (let card in cardsOnTable) {
         if (cardsOnTable[card] != null) {
+            // Add it to the list
             currentCards.push(cardsOnTable[card]);
+            // Clear the spot
+            cardsOnTable[card] = null;
         }
     }
 
-    // Clear each of their classes and add new ones
-    for (let i in currentCards) {
-        let curCard = document.getElementById("card-" + currentCards[i])
-        curCard.classList = [];
-        curCard.classList.add("card-image", "card-unclicked", "cell-" + i);
+    console.log("SORTING CARDS:", cardsOnTable);
+    // Take each of our cards
+    for (let card in currentCards) {
+        // Add it to the table starting from the 1st index
+        cardsOnTable[card] = currentCards[card];
+        // Then add the classes
+        let currentCard = document.getElementById("card-" + currentCards[card]);
+        currentCard.classList = [];
+        currentCard.classList.add("card-image", "card-unclicked", "cell-" + card);
+        cardsOnTable[card] = currentCards[card];
     }
+
+
+    console.log("SORTED CARDS:", cardsOnTable);
 
 }
 
@@ -214,7 +244,7 @@ function checkMatch() {
 
     //Get the current set
     //let posMatch = match.slice();
-    console.log("Checking:", match);
+    console.log("CHECKING:", match);
 
     //Only check if there are 3 cards in set
     if (match.length === 3) {
@@ -241,7 +271,6 @@ function checkMatch() {
             clearCard("cell-" + cellNumbers[0]);
             clearCard("cell-" + cellNumbers[1]);
             clearCard("cell-" + cellNumbers[2]);
-
 
             // Sort the cards
             sortCards();
