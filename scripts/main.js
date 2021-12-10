@@ -93,6 +93,28 @@ var cardsOnTable = [null, null, null, null, null, null, null, null, null, null, 
 // Create the img elements when the page first loads
 getImages();
 
+//Creates the img elements for the cards
+function getImages() {
+    cardImages = [];
+    for (var i = 0; i < deckSize; i++) {
+        //Get pngs
+        //Change replace unnderscore with dash in file names?
+        var imgPath = "images/cards/png/card-" + i + ".png";
+        //Give each card an id
+        var cardId = "card-" + i;
+
+        //Create the card images
+        var cardImage = document.createElement("img");
+        cardImage.setAttribute("id", cardId);
+        cardImage.setAttribute("src", imgPath);
+        cardImage.setAttribute("onclick", "cardClicked(this.id)");
+
+        //Save them for later
+        cardImages.push(cardImage);
+    }
+}
+
+
 function newGame() {
 
     // Reset stuff
@@ -527,26 +549,6 @@ function ternary(num) {
 }
 
 
-//Creates the img elements for the cards
-function getImages() {
-    cardImages = [];
-    for (var i = 0; i < deckSize; i++) {
-        //Get pngs
-        //Change replace unnderscore with dash in file names?
-        var imgPath = "images/cards/card_" + i + ".png";
-        //Give each card an id
-        var cardId = "card-" + i;
-
-        //Create the card images
-        var cardImage = document.createElement("img");
-        cardImage.setAttribute("id", cardId);
-        cardImage.setAttribute("src", imgPath);
-        cardImage.setAttribute("onclick", "cardClicked(this.id)");
-
-        //Save them for later
-        cardImages.push(cardImage);
-    }
-}
 
 //Creates a graph of every possible set in game
 //Can be modified to find every possible unique set by setting j = i+1 and k = j+ 1

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: red;
+      }
+    </style>
+  </defs>
+  <g id="card-17">
+    <g>
+      <rect class="cls-1" width="80" height="120"/>
+      <g>
+        <path class="cls-2" d="M50,60a10,10,0,0,0-5-8.65v17.3A10,10,0,0,0,50,60Z"/>
+        <path class="cls-2" d="M30,60a10,10,0,0,0,5,8.65V51.35A10,10,0,0,0,30,60Z"/>
+        <path class="cls-2" d="M35,51.35v17.3A10,10,0,0,0,40,70V50A10,10,0,0,0,35,51.35Z"/>
+        <path class="cls-2" d="M40,50V70a10,10,0,0,0,5-1.35V51.35A10,10,0,0,0,40,50Z"/>
+      </g>
+      <g>
+        <path class="cls-2" d="M50,30a10,10,0,0,0-5-8.65v17.3A10,10,0,0,0,50,30Z"/>
+        <path class="cls-2" d="M30,30a10,10,0,0,0,5,8.65V21.35A10,10,0,0,0,30,30Z"/>
+        <path class="cls-2" d="M35,21.35v17.3A10,10,0,0,0,40,40V20A10,10,0,0,0,35,21.35Z"/>
+        <path class="cls-2" d="M40,20V40a10,10,0,0,0,5-1.35V21.35A10,10,0,0,0,40,20Z"/>
+      </g>
+      <g>
+        <path class="cls-2" d="M50,90a10,10,0,0,0-5-8.65v17.3A10,10,0,0,0,50,90Z"/>
+        <path class="cls-2" d="M30,90a10,10,0,0,0,5,8.65V81.35A10,10,0,0,0,30,90Z"/>
+        <path class="cls-2" d="M35,81.35v17.3A10,10,0,0,0,40,100V80A10,10,0,0,0,35,81.35Z"/>
+        <path class="cls-2" d="M40,80v20a10,10,0,0,0,5-1.35V81.35A10,10,0,0,0,40,80Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

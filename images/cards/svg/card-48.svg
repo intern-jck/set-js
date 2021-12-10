@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: #006837;
+        stroke: #006837;
+      }
+    </style>
+  </defs>
+  <g id="card-48">
+    <g>
+      <rect class="cls-1" y="1" width="80" height="120"/>
+      <polygon class="cls-2" points="40 71 30 91 50 91 40 71"/>
+      <polygon class="cls-2" points="40 31 30 51 50 51 40 31"/>
+    </g>
+  </g>
+</svg>

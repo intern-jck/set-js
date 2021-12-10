@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: blue;
+      }
+    </style>
+  </defs>
+  <g id="card-69">
+    <g>
+      <rect class="cls-1" width="80" height="120"/>
+      <g>
+        <polyline class="cls-2" points="40 70 50 70 40 50"/>
+        <polyline class="cls-2" points="35 60 30 70 40 70"/>
+        <line class="cls-2" x1="35" y1="60" x2="40" y2="50"/>
+        <line class="cls-2" x1="40" y1="70" x2="40" y2="50"/>
+        <line class="cls-2" x1="35" y1="60" x2="35" y2="70"/>
+        <line class="cls-2" x1="35" y1="60" x2="35" y2="60"/>
+        <line class="cls-2" x1="45" y1="60" x2="45" y2="70"/>
+      </g>
+      <g>
+        <polyline class="cls-2" points="40 40 50 40 40 20"/>
+        <polyline class="cls-2" points="35 30 30 40 40 40"/>
+        <line class="cls-2" x1="35" y1="30" x2="40" y2="20"/>
+        <line class="cls-2" x1="40" y1="40" x2="40" y2="20"/>
+        <line class="cls-2" x1="35" y1="30" x2="35" y2="40"/>
+        <line class="cls-2" x1="35" y1="30" x2="35" y2="30"/>
+        <line class="cls-2" x1="45" y1="30" x2="45" y2="40"/>
+      </g>
+      <g>
+        <polyline class="cls-2" points="40 100 50 100 40 80"/>
+        <polyline class="cls-2" points="35 90 30 100 40 100"/>
+        <line class="cls-2" x1="35" y1="90" x2="40" y2="80"/>
+        <line class="cls-2" x1="40" y1="100" x2="40" y2="80"/>
+        <line class="cls-2" x1="35" y1="90" x2="35" y2="100"/>
+        <line class="cls-2" x1="35" y1="90" x2="35" y2="90"/>
+        <line class="cls-2" x1="45" y1="90" x2="45" y2="100"/>
+      </g>
+    </g>
+  </g>
+</svg>

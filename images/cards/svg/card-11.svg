@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: red;
+      }
+    </style>
+  </defs>
+  <g id="card-11">
+    <g>
+      <rect class="cls-1" width="80" height="120"/>
+      <g>
+        <path class="cls-2" d="M50,60a10,10,0,0,0-5-8.65v17.3A10,10,0,0,0,50,60Z"/>
+        <path class="cls-2" d="M30,60a10,10,0,0,0,5,8.65V51.35A10,10,0,0,0,30,60Z"/>
+        <path class="cls-2" d="M35,51.35v17.3A10,10,0,0,0,40,70V50A10,10,0,0,0,35,51.35Z"/>
+        <path class="cls-2" d="M40,50V70a10,10,0,0,0,5-1.35V51.35A10,10,0,0,0,40,50Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: red;
+      }
+    </style>
+  </defs>
+  <g id="card-13">
+    <g>
+      <rect class="cls-1" width="80" height="120"/>
+      <g>
+        <rect class="cls-2" x="30" y="70" width="5" height="20"/>
+        <rect class="cls-2" x="35" y="70" width="5" height="20"/>
+        <rect class="cls-2" x="40" y="70" width="5" height="20"/>
+        <rect class="cls-2" x="45" y="70" width="5" height="20"/>
+      </g>
+      <g>
+        <rect class="cls-2" x="30" y="30" width="5" height="20"/>
+        <rect class="cls-2" x="35" y="30" width="5" height="20"/>
+        <rect class="cls-2" x="40" y="30" width="5" height="20"/>
+        <rect class="cls-2" x="45" y="30" width="5" height="20"/>
+      </g>
+    </g>
+  </g>
+</svg>
