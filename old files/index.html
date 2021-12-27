@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <title>Set Game App</title>
+
+</head>
+
+<body>
+
+    <div id="match-intro">
+
+        <div id="game-title">
+            <h1> Matching Game! </h1>
+            <!-- <h4><i>Version 1.0</i></h4> -->
+            <p><i>By: Justin C Kirk <a href="mailto:justin.c.kirk@gmail.com">justin.c.kirk@gmail.com</a> </i></p>
+        </div>
+
+        <div id="game-rules">
+
+            <div id="rules-header">
+                <h2>RULES:</h2>
+                <h4>Each card has 4 attributes:</h4> 
+                <h4>Color, Texture, Number and Shape</h4>
+                <h4>A match is when 3 cards have either the same or differnt type of attribute for each of the 4 types.</h4>
+            </div>
+
+            <div id="card-set-1">
+                <h4><i>Example 1</i></h4>
+                <h4>Same color, texture, and number.</h4>
+                <h4>Different shape.</h4>
+                <img src="images/cards/png/card-0.png" class="example-card">
+                <img src="images/cards/png/card-1.png" class="example-card">
+                <img src="images/cards/png/card-2.png" class="example-card">
+            </div>
+            <div id="card-set-2">
+                <h4><i>Texture</i></h4>
+                <h4>Empty, Shaded, or Filled</h4>
+                <img src="images/cards/card_0.png" class="example-card">
+                <img src="images/cards/card_40.png" class="example-card">
+                <img src="images/cards/card_80.png" class="example-card">
+            </div>
+            <div id="card-set-3">
+                <h4><i>Amount</i></h4>
+                <h4>One, Two or Three</h4>
+                <img src="images/cards/card_56.png" class="example-card">
+                <img src="images/cards/card_59.png" class="example-card">
+                <img src="images/cards/card_62.png" class="example-card">
+            </div>
+            <div id="card-set-4">
+                <h4><i>Shape</i></h4>
+                <h4>Triangle, Square or Circle</h4>
+                <img src="images/cards/card_24.png" class="example-card">
+                <img src="images/cards/card_70.png" class="example-card">
+                <img src="images/cards/card_35.png" class="example-card">
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <div id="match-game">
+
+        <div id="game-control">
+            <div id="main-buttons">
+                <button onclick="newGame();">New Game</button>
+                <button onclick="clearTable();">Clear Table</button>
+            </div>
+            <div id="gameplay-buttons">
+                <button onclick="checkMatch();">Check Set</button>
+                <button onclick="hint();">Hint</button>
+                <button onclick="drawThree();">Draw 3</button>
+            </div>
+            <div id="scoreboard">
+                <h2>Matches <span id="points">0</span></h2>
+            </div>
+        </div>
+
+        <div id="card-table">
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
