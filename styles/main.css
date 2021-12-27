@@ -1,0 +1,14 @@
+.row {
+    border:4px solid blue;
+}
+
+.col {
+    border:2px solid orange;
+}
+
+.example-card{
+    /* scale:80%; */
+    /* border:2px solid red; */
+    display:block;
+    margin:auto;
+}
