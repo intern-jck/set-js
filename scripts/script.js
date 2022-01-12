@@ -89,6 +89,28 @@ var points = 0;
 
 
 
+// Show/Close Rules Overlay
+
+function showRules() {
+    console.log("Opening Rules");
+    document.getElementById("rules").style.height = "100%";
+    // document.getElementById("rules").style.display = "block";
+
+}
+
+function closeRules() {
+    console.log("Closing Rules");
+    document.getElementById("rules").style.height = "0%";
+    // document.getElementById("rules").style.display = "none";
+}
+
+// var closeButton = document.getElementById("close");
+
+// closeButton.addEventListener('click', function (event) {
+//     closeRules();
+// });
+
+
 var cardsOnTable = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,];
 // Create the img elements when the page first loads
 getImages();
@@ -173,6 +195,7 @@ function clearTable() {
 
 // Places card at cell location
 function drawCard(cell) {
+    console.log(cell);
 
     // If there are no more cards to draw, exit
     if (cardDeck.length == 0) {
@@ -183,12 +206,16 @@ function drawCard(cell) {
     let cardDrawn = cardImages[cardDeck[0]];
 
     // Add the cell to it's class
-    cardDrawn.classList.add(cell);
+    cardDrawn.classList.add("cell");
     // As well as the other classes
     cardDrawn.classList.add("card-image");
+    cardDrawn.classList.add("img-fluid");
     cardDrawn.classList.add("card-unclicked");
     // Add it to the page
-    document.getElementById("card-table").appendChild(cardDrawn);
+    // document.getElementById("card-table").appendChild(cardDrawn);
+    document.getElementById(cell).appendChild(cardDrawn);
+
+    // document.getElementById(cell).appendChild(cardDrawn);
 
     //Get the cell number
     let cellArr = cell.split("-");
@@ -230,7 +257,6 @@ function clearCard(cell) {
 //Rearanges cards to keep the layout neat
 function sortCards() {
 
-
     console.log("SORT CARDS:", cardsOnTable);
 
     // Get the cards currently on the table
@@ -245,6 +271,7 @@ function sortCards() {
     }
 
     console.log("SORTING CARDS:", cardsOnTable);
+
     // Take each of our cards
     for (let card in currentCards) {
         // Add it to the table starting from the 1st index
@@ -252,7 +279,12 @@ function sortCards() {
         // Then add the classes
         let currentCard = document.getElementById("card-" + currentCards[card]);
         currentCard.classList = [];
-        currentCard.classList.add("card-image", "card-unclicked", "cell-" + card);
+        // currentCard.classList.add("card-image", "card-unclicked", "cell-" + card);
+        currentCard.classList.add("card-image", "card-unclicked");
+
+        // Clear the card from the table
+        clearCard(cell);
+
         cardsOnTable[card] = currentCards[card];
     }
 
@@ -298,12 +330,12 @@ function checkMatch() {
             sortCards();
 
             // Add new cards to these locations
-            for (let i in cardsOnTable) {
-                if (cardsOnTable[i] === null && i < 12) {
-                    console.log("cell-" + i);
-                    drawCard("cell-" + i);
-                }
-            }
+            // for (let i in cardsOnTable) {
+            //     if (cardsOnTable[i] === null && i < 12) {
+            //         console.log("cell-" + i);
+            //         drawCard("cell-" + i);
+            //     }
+            // }
 
 
             // Clear the match

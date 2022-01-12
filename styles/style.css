@@ -1,26 +1,148 @@
 body{
+    font-family:monospace;
     margin:2%;
-    border:4px solid black;
-    background-color:antiquewhite;
+    /* border:4px solid black; */
+    background-color:white;
 }
 
-.example-card{
-    width: auto;
+#site-header{
+    border:2px solid red;
+    text-align:center;
+    font-weight:bold;
+    width:auto;
+    margin:auto;
+}
+
+/* GAME */
+#game-section{    
+    border:2px solid cyan;
+}
+
+#game-control{
+    width:auto;
+    margin:auto;
+    border:2px solid orange;
+}
+
+#scoreboard{
+    text-align:center;
+    font-size:200%;
+}
+
+#points{
+    color:red;
+    font-weight:bold;
+    /* border:2px solid red; */
+}
+
+button{
+    margin:5px;
+}
+
+#card-table{   
+    max-width:460px;
     height:auto;
+    background-color:lightgray;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:2px;
+    border:2px solid black;
 }
 
-#game-rules{
-    border:4px solid black;
+.card-image{
+    object-fit:cover;
+    max-width:100%;
+    height:100%;
+    border:1px solid black;
+}
+.card-hint{
+    border:2px solid orange;
 }
 
-#game-table{    
-    border:4px solid black;
+.card-clicked{
+    border:2px solid green;
 }
 
-.example-set{
-    border:4px solid green;
-    max-height:100%;
+/* .cell {
+    border:2px solid blue;
+} */
+
+
+
+
+
+
+/* RULES */
+#rules{
+    height:0;
+    width:100%;
+    position:fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    background-color:rgb(0,0,0);
+    background-color:rgba(0,0,0,0.9);
+    overflow-y:hidden;
+    transition:0.5s;
 }
-.row{
-    max-height:100%;
+
+#rules i{
+    z-index:99;
+    color:white;
+    scale:250%;
+    height:auto;
+    width:auto;
+    display:block;
+    position:absolute;
+    top:30px;
+    right:60px;
+    border:2px solid blue;
+}
+
+i:hover{
+    cursor:pointer;
+}
+
+.rules-content{
+    color:white;
+    position:relative;
+    height:100%;
+    text-align:center;
+    margin-top:30px;
+}
+
+.examples{
+    width:auto;
+    margin:auto;
+    justify-content:center;
+    display:grid;
+    grid-template-rows:300px 300px;
+    grid-template-columns:300px 300px;
+    border:2px solid white;
+}
+
+.example-1{
+    /* border:2px solid orange; */
+    grid-row:1;
+    grid-column:1;
+}
+
+.example-2{
+    /* border:2px solid white; */
+    grid-row:1;
+    grid-column:2;
+}
+
+.example-3{
+    /* border:2px solid white; */
+    grid-row:2;
+    grid-column:1;
+}
+
+.example-4{
+    /* border:2px solid white; */
+    grid-row:2;
+    grid-column:2;
 }
