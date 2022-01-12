@@ -1,0 +1,62 @@
+
+                        <div class="col">
+                            <div id="card-set-2">
+                                <h4><i>Texture</i></h4>
+                                <h4>Empty, Shaded, or Filled</h4>
+                                <img src="images/cards/png/card-0.png" class="example-card">
+                                <img src="images/cards/png/card-40.png" class="example-card">
+                                <img src="images/cards/png/card-80.png" class="example-card">
+                            </div>
+                        </div>
+
+
+                        
+                    <div class="row">
+                        <div class="col">
+                            <div id="card-set-3">
+                                <h4><i>Amount</i></h4>
+                                <h4>One, Two or Three</h4>
+                                <img src="images/cards/png/card-56.png" class="example-card">
+                                <img src="images/cards/png/card-59.png" class="example-card">
+                                <img src="images/cards/png/card-62.png" class="example-card">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="card-set-4">
+                                <h4><i>Shape</i></h4>
+                                <h4>Triangle, Square or Circle</h4>
+                                <img src="images/cards/png/card-24.png" class="example-card">
+                                <img src="images/cards/png/card-70.png" class="example-card">
+                                <img src="images/cards/png/card-35.png" class="example-card">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="game-rules" class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div id="rules-header">
+                                    <h2>RULES:</h2>
+                                    <h4>Each card has 4 attributes:</h4>
+                                    <h4>Color, Texture, Number and Shape</h4>
+                                    <h4>A match is when 3 cards have either the same or differnt type of attribute for each
+                                        of the 4
+                                        types.
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="row border border-4 border-primary">
+                            <h4><i>Color</i></h4>
+                            <h4>Red, Green or Blue</h4>
+                            <div class="col example-set">
+                                <img src="images/cards/png/card-20.png" class="img-fluid example-card">
+                                <img src="images/cards/png/card-47.png" class="img-fluid example-card">
+                                <img src="images/cards/png/card-74.png" class="img-fluid example-card">
+                            </div>
+                        </div>
+    
+                    </div>
