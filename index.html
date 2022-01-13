@@ -15,7 +15,6 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <!-- <link href="styles/card-table.css" rel="stylesheet"> -->
     <link href="styles/style.css" rel="stylesheet">
 
     <!-- My Scripts -->
@@ -33,7 +32,7 @@
     <!-- GAME -->
     <header>
         <div class="container">
-            <h1 id="site-header">Matching Game</h1>
+            <h1 id="site-header" class="m-2 text-center">Matching Game</h1>
         </div>
     </header>
 
@@ -42,18 +41,25 @@
 
         <div class="row">
             <div id="game-control" class="d-flex justify-content-center">
-                <button onclick="showRules();">Rules</button>
-                <button onclick="newGame();">New Game</button>
-                <button onclick="clearTable();">Clear Table</button>
-                <button onclick="checkMatch();">Check Set</button>
-                <button onclick="hint();">Hint</button>
-                <button onclick="drawThree();">Draw 3</button>
+                <button onclick="showRules();">RULES</button>
+                <button onclick="newGame();">NEW</button>
+                <button id="easy-btn" onclick="easyMode();">EASY MODE</button>
             </div>
         </div>
 
         <div class="row">
-            <h1 id="scoreboard">POINTS: <span id="points">0</span></h1>
+            <div id="game-control" class="d-flex justify-content-center">
+                <button onclick="checkMatch();">CHECK</button>
+                <button onclick="getHint();">HINT</button>
+                <button onclick="drawThree();">DRAW 3</button>
+            </div>
         </div>
+        <div class="row">
+            <h1 id="scoreboard" class="fw-bold m-2">
+                CARDS LEFT: <span id="cards-left">0</span>
+            </h1>
+        </div>
+
 
         <div class="row">
             <div id="card-table" class="p-2">
@@ -118,55 +124,64 @@
     </div>
 
     <!-- Hidden -->
-    <div class="container">
+    <div class="container-fluid">
+        <div id="rules" class="overlay" onclick="closeRules()">
 
-        <div id="rules" class="overlay">
-
-            <!-- figure out how to add a button..... -->
             <i class="fas fa-times" onclick="closeRules()"></i>
-            <!-- <a href="javascript:void(0)" class="close" onclick="closeRules()">&times;</a> -->
 
             <!-- Content -->
-            <div class=" rules-content">
-                <h2>Rules</h2>
-                <p>Find a set with either all the same or different:</p>
-                <div class="examples">
-                    <div class="example-1">
-                        <h4>Color</h4>
-                        <h4>Red, Green or Blue</h4>
-                        <img src="images/cards/png/card-20.png" class="example-card">
-                        <img src="images/cards/png/card-47.png" class="example-card">
-                        <img src="images/cards/png/card-74.png" class="example-card">
-                    </div>
-                    <div class="example-2">
-                        <h4>Texture</h4>
-                        <h4>Empty, Shaded, or Filled</h4>
-                        <img src="images/cards/png/card-0.png" class="example-card">
-                        <img src="images/cards/png/card-40.png" class="example-card">
-                        <img src="images/cards/png/card-80.png" class="example-card">
-                    </div>
-                    <div class="example-3">
-                        <h4>Amount</h4>
-                        <h4>One, Two or Three</h4>
-                        <img src="images/cards/png/card-56.png" class="example-card">
-                        <img src="images/cards/png/card-59.png" class="example-card">
-                        <img src="images/cards/png/card-62.png" class="example-card">
+            <div id="rules-content">
 
-                    </div>
-                    <div class="example-4">
-                        <h4>Shape</h4>
-                        <h4>Triangle, Square or Circle</h4>
-                        <img src="images/cards/png/card-24.png" class="example-card">
-                        <img src="images/cards/png/card-70.png" class="example-card">
-                        <img src="images/cards/png/card-35.png" class="example-card">
-                    </div>
+                <div class="row text-center p-2">
+                    <h1 class="fw-bold">Rules</h1>
+                    <p class="fs-4">Each card has 4 attributes.</p>
+                    <p class="fs-4">Find three cards whose attributes are either are the same or all different.</p>
+                    <p class="fs-4">Below are examples of each attribute and examples of what makes a match.</p>
+                    <p class="fs-4">Each group of 3 cards form a match.</p>
                 </div>
+
+                <div class="row p-1 justify-content-center align-items-end">
+                    <div class="col-md-4 mt-2 text-center example">
+                        <h2 class="fw-bold">Color</h2>
+                        <h3>Red, Green, Blue</h3>
+                        <img src="assets/card-20.png" class="example-card">
+                        <img src="assets/card-47.png" class="example-card">
+                        <img src="assets/card-74.png" class="example-card">
+                    </div>
+                    <div class="col-md-4 mt-2 text-center example">
+                        <h2 class="fw-bold">Texture</h2>
+                        <h3>Empty, Shaded, Filled</h3>
+                        <img src="assets/card-0.png" class="example-card">
+                        <img src="assets/card-40.png" class="example-card">
+                        <img src="assets/card-80.png" class="example-card">
+                    </div>
+
+                </div>
+
+                <div class="row p-1 justify-content-center align-items-end">
+
+                    <div class="col-md-4 mt-2 text-center example">
+                        <h2 class="fw-bold">Amount</h2>
+                        <h2>One, Two, Three</h2>
+                        <img src="assets/card-56.png" class="example-card">
+                        <img src="assets/card-59.png" class="example-card">
+                        <img src="assets/card-62.png" class="example-card">
+                    </div>
+
+                    <div class="col-md-4 mt-2 text-center example">
+                        <h2 class="fw-bold">Shape</h2>
+                        <h2>Triangle, Square, Circle</h2>
+                        <img src="assets/card-24.png" class="example-card">
+                        <img src="assets/card-70.png" class="example-card">
+                        <img src="assets/card-35.png" class="example-card">
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
-
     </div>
-
-
 
 </body>
 
