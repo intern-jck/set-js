@@ -1,17 +1,23 @@
-html{
-    font-size:100%;
-}
-
-
 body{
     font-family:monospace;
     margin:2%;
-    /* border:4px solid black; */
     background-color:white;
+    font-size:100%;
+}
+
+.navbar-brand{
+    color:white;
+}
+
+.nav-link{
+    color:white;
+}
+
+.nav-link:hover{
+    color:green;
 }
 
 #site-header{
-    /* border:2px solid red; */
     text-align:center;
     font-weight:bold;
     width:auto;
@@ -40,7 +46,6 @@ body{
 }
 
 .card-image{
-    /* object-fit:cover; */
     max-width:100%;
     height:100%;
     border:4px solid black;
@@ -69,7 +74,6 @@ body{
     color:white;
     background-color:grey;
     border:4px solid black;
-    /* background-color:rgba(0,0,0,0.9); */
     overflow-y:scroll;
     transition:0.2s;
 }
