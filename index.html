@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Matching Game App</title>
-
-    <!-- Font Awesome 5-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!-- FA Icons -->
+    <script src="https://kit.fontawesome.com/cdcc65decb.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
 
     <!-- My Scripts -->
     <script src="scripts/script.js" defer></script>
@@ -25,41 +25,82 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"
         defer></script>
 
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_zEaMjktSGuSK3vfKZTaF3");
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('match_game_service', 'match_game_template', this)
+                    .then(function () {
+                        console.log('SUCCESS!');
+                        closeContact();
+                        window.alert("Thank you for the message!");
+                    }, function (error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+
 </head>
 
 <body>
 
-    <!-- GAME -->
-    <header>
+    <nav class="navbar navbar-expand-lg" aria-label="Main Navbar">
         <div class="container">
-            <h1 id="site-header" class="m-2 text-center">Matching Game</h1>
-        </div>
-    </header>
 
+            <a class="navbar-brand" href="/">Matching Game</a>
+            <a href="https://github.com/intern-jck/matchingGame" target="_blank"><i class="fab fa-github fa-2x"></i></a>
 
-    <div id="game-section" class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#game-navbar"
+                aria-controls="game-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="row">
-            <div id="game-control" class="d-flex justify-content-center">
-                <button onclick="showRules();">RULES</button>
-                <button onclick="newGame();">NEW</button>
-                <button id="easy-btn" onclick="easyMode();">EASY MODE</button>
+            <div class="collapse navbar-collapse justify-content-end" id="game-navbar">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Play</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showRules();">Rules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showContact();">Contact</a>
+                    </li>
+
+                </ul>
             </div>
+
+        </div>
+    </nav>
+
+
+    <div id="game-section" class="container">
+
+        <div class="d-block text-center">
+            <button class="btn border border-4 border-dark m-2" onclick="newGame();">NEW</button>
+            <button class="btn border border-4 border-dark m-2" onclick="easyMode();" id="easy-btn">EASY</button>
+            <button class="btn border border-4 border-dark m-2" onclick="checkMatch();">CHECK</button>
+            <button class="btn border border-4 border-dark m-2" onclick="getHint();">HINT</button>
+            <button class="btn border border-4 border-dark m-2" onclick="drawThree();">DRAW 3</button>
         </div>
 
         <div class="row">
-            <div id="game-control" class="d-flex justify-content-center">
-                <button onclick="checkMatch();">CHECK</button>
-                <button onclick="getHint();">HINT</button>
-                <button onclick="drawThree();">DRAW 3</button>
-            </div>
-        </div>
-        <div class="row">
-            <h1 id="scoreboard" class="fw-bold m-2">
-                CARDS LEFT: <span id="cards-left">0</span>
+            <h1 id="scoreboard" class="fw-bold m-2 text-center">
+                CARDS LEFT:<span id="cards-left">0</span>
             </h1>
         </div>
-
 
         <div class="row">
             <div id="card-table" class="p-2">
@@ -124,16 +165,20 @@
     </div>
 
     <!-- Hidden -->
-    <div class="container-fluid">
-        <div id="rules" class="overlay" onclick="closeRules()">
+    <div id="rules" class="overlay" onclick="closeRules()">
 
+        <div class="container-fluid">
             <i class="fas fa-times" onclick="closeRules()"></i>
+
+            <h2>https://en.wikipedia.org/wiki/Set_(card_game)</h2>
+            <h2>https://www.setgame.com/set/puzzle</h2>
 
             <!-- Content -->
             <div id="rules-content">
 
                 <div class="row text-center p-2">
                     <h1 class="fw-bold">Rules</h1>
+                    <p class="fs-4">Try to find matches for all the cards!</p>
                     <p class="fs-4">Each card has 4 attributes.</p>
                     <p class="fs-4">Find three cards whose attributes are either are the same or all different.</p>
                     <p class="fs-4">Below are examples of each attribute and examples of what makes a match.</p>
@@ -183,6 +228,51 @@
         </div>
     </div>
 
+    <div id="contact" class="overlay">
+
+        <div class="container-fluid">
+            <div class="row border border-dark">
+            </div>
+            <i class="fas fa-times" onclick="closeContact()"></i>
+
+            <h1 class="text-center fw-bold text-black">Contact</h1>
+            <form id="contact-form">
+                <input type="hidden" name="contact_number">
+
+                <div class="row justify-content-center mb-3">
+                    <div class="col-4">
+                        <label for="input1" class="form-label">Name</label>
+                        <input id="contact-name" type="text" name="user_name" class="form-control" placeholder="Name"
+                            aria-label="Name">
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-3">
+                    <div class="col-4">
+                        <label for="input2" class="form-label">E-mail</label>
+                        <input id="contact-email" type="email" name="user_email" class="form-control"
+                            placeholder="something@email.com" aria-label="Email">
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-3">
+                    <div class="col-4">
+                        <label for="textarea1" class="form-label">Message</label>
+                        <textarea id="contact-message" name="message" class="form-control"
+                            placeholder="You're site is so awesome!" rows="4" aria-label="Email"></textarea>
+
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <button type="submit" value="Send" class="btn border border-4 border-dark w-auto fw-bold"
+                        style="background-color:white;" onmouseover="this.style.backgroundColor='green'"
+                        onmouseout="this.style.backgroundColor='white'">SEND</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </body>
 
 </html>

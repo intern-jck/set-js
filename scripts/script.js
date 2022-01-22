@@ -92,7 +92,6 @@ class Game {
             this.drawCard(cellId);
         }
 
-
         this.updateScoreboard(0);
     }
 
@@ -339,6 +338,7 @@ class Game {
             alert("Only one hint at a time!")
         }
     }
+
     checkWinner() {
         if (this.cardsLeft.length === 0 && this.cardTable.some(card => card != null)) {
             console.log("Keep going!");
@@ -347,6 +347,7 @@ class Game {
             this.newGame();
         }
     }
+
     //Converts a deciaml number 0-80 to an 4 element array representing its ternary value
     ternary(num) {
 
@@ -385,14 +386,9 @@ class Game {
 
     }
 
-
-
 }
 
 let myGame = new Game();
-
-
-
 
 
 function newGame() {
@@ -426,4 +422,11 @@ function closeRules() {
     document.getElementById("rules").style.height = "0%";
 }
 
+// Show/Close Contact Overlay
+function showContact() {
+    document.getElementById("contact").style.height = "100%";
+}
 
+function closeContact() {
+    document.getElementById("contact").style.height = "0%";
+}

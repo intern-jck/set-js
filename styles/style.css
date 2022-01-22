@@ -1,15 +1,23 @@
-@media (max-width: 600px) {
-
-}
-
 body{      
     background-color: white;
     font-family:monospace;
     margin:2%;
     font-size:100%;
 }
+
+i:hover{
+    cursor:pointer;
+}
+
 .navbar{
     background-color:black;
+}
+
+.navbar i{
+    color:white;    
+}
+.navbar i:hover{
+    color:blue;    
 }
 .navbar-toggler-icon{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -67,8 +75,6 @@ body{
     border:4px solid lightgreen;
 }
 
-/* RULES */
-
 #rules{
     z-index:1;
 
@@ -80,7 +86,6 @@ body{
 
     color:white;
     background-color:grey;
-    border:4px solid black;
     overflow-y:scroll;
     transition:0.2s;
 }
@@ -99,10 +104,35 @@ body{
     scale:250%;
 }
 
-i:hover{
-    cursor:pointer;
-}
-
 .example-card{
     border:2px solid black;
+}
+
+#contact{
+    z-index:1;
+
+    height:0%;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+
+    color:white;
+    background-color:grey;
+    overflow-y:hidden;
+    transition:0.2s;
+}
+
+#contact i{
+    z-index:2;
+
+    height:auto;
+    width:auto;
+    display:block;
+    position:absolute;
+    top:10px;
+    right:20px;
+
+    color:red;
+    scale:250%;
 }
