@@ -430,3 +430,5 @@ function showContact() {
 function closeContact() {
     document.getElementById("contact").style.height = "0%";
 }
+
+
