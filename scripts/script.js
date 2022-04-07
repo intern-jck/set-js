@@ -42,7 +42,6 @@ class Game {
             cardImage.setAttribute("id", cardId);
             cardImage.setAttribute("src", imgPath);
             cardImage.classList.add("card-image");
-            cardImage.classList.add("img-fluid");
             cardImage.setAttribute("onclick", "cardClicked(this.id)");
 
             let cardVal = this.ternary(i);
@@ -86,7 +85,7 @@ class Game {
             this.cardsLeft = this.shuffle(this.cardsLeft);
         }
 
-        // Draw 12 cards    
+        // Draw 12 cards
         for (let i = 0; i < 12; i++) {
             let cellId = "cell-" + i;
             this.drawCard(cellId);
@@ -389,7 +388,6 @@ class Game {
 }
 
 let myGame = new Game();
-
 
 function newGame() {
     myGame.newGame();

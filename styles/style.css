@@ -1,138 +1,240 @@
-body{      
-    background-color: white;
+/* PAGE DEFAULTS */
+:root{
+    --bg-color:white;
+    --title-color:black;
+    --icon-color:white;
+    --nav-bg-color:black;
+    --hint-color:orange;
+    --card-border-color:black;
+    --font-color:black;
+    --link-color:blue;
+    --x-icon-color:red;
+
+    --active-color:blue;
+    --on-color:rgb(7, 204, 7);
+    --button-border-color:black;
+}
+body{
+    background-color: var(--bg-color);
     font-family:monospace;
-    margin:2%;
     font-size:100%;
 }
 
-i:hover{
-    cursor:pointer;
-}
-
+/* NAVBAR */
 .navbar{
-    background-color:black;
+    background-color:var(--nav-bg-color);
 }
-
-.navbar i{
-    color:white;    
+.navbar-brand,
+.nav-link {
+    color:var(--icon-color);
+    font-weight:bold;
+    font-size:200%;
 }
-.navbar i:hover{
-    color:blue;    
+.navbar-brand:hover,
+.nav-link:hover,
+.navbar i:hover {
+    color:var(--active-color);
+    cursor:pointer;
 }
 .navbar-toggler-icon{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-
-.navbar-brand{
-    color:white;
-    font-weight:bold;
-    font-size:200%;
+.navbar i{
+    color:var(--icon-color);
 }
 
-.nav-link{
-    color:white;
-    font-weight:bold;
-    font-size:140%;
+/* GAME */
+.game-btn{
+    border:2px solid var(--button-border-color);
+    border-radius:12%;
+    width:fit-content;
+    font-weight: bold;
+    font-size: 180%;
 }
-
-.navbar-brand:hover, .nav-link:hover{
-    color:blue;
+.game-btn:hover {
+    background-color: green ;
 }
-
 .easy-on{
-    background-color:green;
+    background-color:var(--on-color);
 }
-
-#cards-left{
-    color:red;
-    font-weight:bold;
-}
-
-#card-table{   
-    max-width:460px;
-    height:auto;
-    background-color:lightgray;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:20px;
-    margin-bottom:20px;
-    padding:2px;
-    border:2px solid black;
-}
-
 .card-image{
-    max-width:100%;
-    height:100%;
-    border:4px solid black;
-    border-radius:6%;
+    width:auto;
+    height:120px;
+    border:4px solid var(--card-border-color);
+    border-radius:8%;
 }
-
+.card-cell{
+    height:fit-content;
+    width:fit-content;
+}
 .card-hint{
-    border:4px solid orange;
+    border:4px solid var(--hint-color);
 }
-
 .card-clicked{
-    border:4px solid lightgreen;
+    border:4px solid var(--on-color);
 }
 
+/* RULES OVERLAY */
 #rules{
     z-index:1;
-
     height:0%;
     width:100%;
     position:fixed;
     top:0;
     left:0;
-
-    color:white;
-    background-color:grey;
+    color:var(--font-color);
+    background-color:var(--bg-color);
     overflow-y:scroll;
     transition:0.2s;
 }
-
 #rules i{
     z-index:99;
-
     height:auto;
     width:auto;
     display:block;
     position:absolute;
-    top:10px;
-    right:20px;
-
-    color:red;
-    scale:250%;
+    top: 20px;
+    right:40px;
+    color:var(--x-icon-color);
 }
-
 .example-card{
+    border:2px solid var(--card-border-color);
+    margin-top:auto;
+    margin-bottom:auto;
+    width:7vw;
+}
+.table {
     border:2px solid black;
 }
+.table-success {
+    background-color:green !important;
+}
+.table-danger {
+    background-color:red !important;
+}
+.set-game-link,
+.set-wiki-link{
+    color:var(--link-color);
+    font-weight:bold;
+    text-align:center;
+}
 
+/* CONTACT OVERLAY */
 #contact{
     z-index:1;
-
     height:0%;
     width:100%;
     position:fixed;
     top:0;
     left:0;
-
-    color:white;
-    background-color:grey;
+    color:var(--font-color);
+    background-color:var(--bg-color);
     overflow-y:hidden;
     transition:0.2s;
 }
-
 #contact i{
-    z-index:2;
-
+    z-index:99;
     height:auto;
     width:auto;
     display:block;
     position:absolute;
-    top:10px;
-    right:20px;
-
-    color:red;
+    top:20px;
+    right:40px;
+    color:var(--x-icon-color);
     scale:250%;
 }
+.form-control,
+.submit-button {
+    border:2px solid black;
+}
+.submit-button:hover{
+    background-color:green;
+    color:black;
+}
+
+/* SANDBOX PAGE */
+.sandbox-btn{
+    width:100px;
+    border:4px solid var(--button-border-color);
+}
+
+.attribute-active{
+    border:4px solid var(--on-color);
+}
+
+.sandbox-card-example{
+    width:12vw;
+    height:auto;
+    border:4px solid var(--card-border-color);
+    border-radius:8%;
+}
+
+.sandbox-card-match {
+    width:10vw;
+    height:auto;
+    border:4px solid var(--card-border-color);
+    border-radius:4%;
+
+}
+
+
+/* MEDIA QUERIES */
+@media (orientation: landscape) and (max-width:1000px){
+
+    .game-buttons{
+        flex-direction:column;
+    }
+
+    #game-table{
+        width:100%;
+        height:100%;
+    }
+
+    .card-image{
+        width:auto;
+        height:100px;
+    }
+    .example-card {
+        width:10vw;
+    }
+
+}
+
+@media (orientation: portrait) and (max-width:600px) {
+
+    .game-buttons{
+        flex-direction:row;
+    }
+
+    #game-table{
+        width:100%;
+        height:auto;
+    }
+
+    .card-image{
+        width:100%;
+        height:auto;
+        border:2px solid black;
+    }
+
+    .card-cell {
+        max-width:18vw;
+    }
+
+    .example-card {
+        width:20vw;
+    }
+
+    .sandbox-card-example{
+        width:30vw;
+    }
+
+    .sandbox-card-match {
+        width:20vw;
+    }
+}
+
+
+/* style="background-color:white;"
+onmouseover="this.style.backgroundColor='green'"
+onmouseout="this.style.backgroundColor='white'" */
