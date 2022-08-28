@@ -1,98 +1,100 @@
+// Set Game Class
+// Contains all variables and functions for a game of Set.
+
 class Game {
+  constructor() {
+    this.deckSize = 81;
+    this.match = [];
+    this.deck = {};
+    this.cardTable = [];
+    this.easyModeOn = false;
+    this.cardsLeft = [];
+    this.hintFound = false;
+    this.hintSet = [];
+    this.newGame();
+  }
 
-    constructor() {
-        this.deckSize = 81;
-        this.match = [];
-        this.deck = {};
-        this.cardTable = [];
-        this.easyModeOn = false;
-        this.cardsLeft = [];
-        this.hintFound = false;
-        this.hintSet = [];
-        this.newGame();
+  updateScoreboard() {
+    const cardsLeftElement = document.getElementById('cards-left')
+    cardsLeftElement.innerHTML = this.cardsLeft.length;
+  }
+
+  easyMode() {
+    this.easyModeOn = !this.easyModeOn;
+    if (this.easyModeOn) {
+      let btnClassList = document.getElementById("easy-btn").classList;
+      btnClassList.add("easy-on");
+      this.newGame();
+    } else {
+      let btnClassList = document.getElementById("easy-btn").classList;
+      if (btnClassList.contains("easy-on")) {
+        btnClassList.remove("easy-on");
+      }
+      this.newGame();
+    }
+  }
+
+  createDeck() {
+    for (let i = 0; i < this.deckSize; i++) {
+
+      let cardId = "card-" + i;
+      let imgPath = "assets/card-" + i + ".png";
+
+      let cardImage = document.createElement("img");
+      cardImage.setAttribute("id", cardId);
+      cardImage.setAttribute("src", imgPath);
+      cardImage.classList.add("card-image");
+      cardImage.setAttribute("onclick", "cardClicked(this.id)");
+
+      let cardVal = this.ternary(i);
+      this.deck[cardId] = {
+        "cell": null,
+        "click": false,
+        "drawn": false,
+        "id": cardId,
+        "img": cardImage,
+        "num": i,
+        "val": cardVal,
+      }
+      this.cardsLeft.push(cardId);
+    }
+  }
+
+  clearDeck() {
+    for (let card in this.deck) {
+      delete this.deck[card];
+    }
+    this.cardsLeft = [];
+  }
+
+  newGame() {
+    // Clear table if there are cards
+    if (this.cardTable.length > 0) {
+      for (let card in this.cardTable) {
+        if (this.cardTable[card] != null) {
+          let cellToClear = this.deck[this.cardTable[card]].cell
+          this.clearCard(cellToClear);
+        }
+      }
     }
 
-    updateScoreboard() {
-        let cardsLeftElement = document.getElementById('cards-left')
-        cardsLeftElement.innerHTML = this.cardsLeft.length;
+    // Reset
+    this.clearDeck();
+    this.createDeck();
+    this.hintFound = false;
+
+    if (this.easyModeOn === false) {
+      this.cardsLeft = this.shuffle(this.cardsLeft);
     }
 
-    easyMode() {
-        this.easyModeOn = !this.easyModeOn;
-        if (this.easyModeOn) {
-            let btnClassList = document.getElementById("easy-btn").classList;
-            btnClassList.add("easy-on");
-            this.newGame();
-        } else {
-            let btnClassList = document.getElementById("easy-btn").classList;
-            if (btnClassList.contains("easy-on")) {
-                btnClassList.remove("easy-on");
-            }
-            this.newGame();
-        }
+    // Draw 12 cards
+    for (let i = 0; i < 12; i++) {
+        let cellId = "cell-" + i;
+        this.drawCard(cellId);
     }
 
-    createDeck() {
-        for (let i = 0; i < this.deckSize; i++) {
-
-            let cardId = "card-" + i;
-            let imgPath = "assets/card-" + i + ".png";
-
-            let cardImage = document.createElement("img");
-            cardImage.setAttribute("id", cardId);
-            cardImage.setAttribute("src", imgPath);
-            cardImage.classList.add("card-image");
-            cardImage.setAttribute("onclick", "cardClicked(this.id)");
-
-            let cardVal = this.ternary(i);
-            this.deck[cardId] = {
-                "cell": null,
-                "click": false,
-                "drawn": false,
-                "id": cardId,
-                "img": cardImage,
-                "num": i,
-                "val": cardVal,
-            }
-            this.cardsLeft.push(cardId);
-        }
-    }
-
-    clearDeck() {
-        for (let card in this.deck) {
-            delete this.deck[card];
-        }
-        this.cardsLeft = [];
-    }
-
-    newGame() {
-        // Clear table if there are cards
-        if (this.cardTable.length > 0) {
-            for (let card in this.cardTable) {
-                if (this.cardTable[card] != null) {
-                    let cellToClear = this.deck[this.cardTable[card]].cell
-                    this.clearCard(cellToClear);
-                }
-            }
-        }
-
-        // Reset
-        this.clearDeck();
-        this.createDeck();
-        this.hintFound = false;
-
-        if (this.easyModeOn === false) {
-            this.cardsLeft = this.shuffle(this.cardsLeft);
-        }
-
-        // Draw 12 cards
-        for (let i = 0; i < 12; i++) {
-            let cellId = "cell-" + i;
-            this.drawCard(cellId);
-        }
-
-        this.updateScoreboard(0);
-    }
+    this.updateScoreboard(0);
+  }
 
     shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
@@ -385,48 +387,48 @@ class Game {
 
     }
 
-}
+  }
 
-let myGame = new Game();
+  let myGame = new Game();
 
-function newGame() {
+  function newGame() {
     myGame.newGame();
-}
+  }
 
-function cardClicked(cardId) {
+  function cardClicked(cardId) {
     myGame.cardClicked(cardId);
-}
+  }
 
-function checkMatch() {
+  function checkMatch() {
     myGame.checkMatch();
-}
+  }
 
-function drawThree() {
+  function drawThree() {
     myGame.drawThree();
-}
-function getHint() {
+  }
+  function getHint() {
     myGame.getHint();
-}
-function easyMode() {
+  }
+  function easyMode() {
     myGame.easyMode();
-}
+  }
 
-// Show/Close Rules Overlay
-function showRules() {
+  // Show/Close Rules Overlay
+  function showRules() {
     document.getElementById("rules").style.height = "100%";
-}
+  }
 
-function closeRules() {
+  function closeRules() {
     document.getElementById("rules").style.height = "0%";
-}
+  }
 
-// Show/Close Contact Overlay
-function showContact() {
+  // Show/Close Contact Overlay
+  function showContact() {
     document.getElementById("contact").style.height = "100%";
-}
+  }
 
-function closeContact() {
+  function closeContact() {
     document.getElementById("contact").style.height = "0%";
-}
+  }
 
 
